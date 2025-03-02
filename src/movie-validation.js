@@ -9,11 +9,6 @@
 // Toggle examples on or off.
 const SHOW_EXAMPLES = false;
 
-function isObject(value) {
-  // implement code here
-  // Check if the value is an object and not null.
-}
-
 /**
  * Checks whether an object has a property of the expected type.
  * @param {object} obj - The object to check.
@@ -24,7 +19,19 @@ function isObject(value) {
  */
 export function hasPropertyOfType(obj, prop, expectedType) {
   // implement code here
+  if (obj !== null && typeof obj !== 'undefined') {
+
+    if (Object.hasOwn(obj, prop) && typeof obj[prop] == expectedType) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  } else {
+    return false;
+  }
 }
+
 
 /**
  * Retrieves the movie title.
@@ -34,6 +41,13 @@ export function hasPropertyOfType(obj, prop, expectedType) {
  */
 export function getMovieTitle(movie) {
   // implement code here
+  if (Object.hasOwn(movie, 'title') && typeof movie.title !== 'undefined') {
+    return movie['title'];
+  }
+  else {
+    console.log("getMovieTitle: Invalid movie object or title missing.");
+    return "";
+  }
 }
 
 /**
@@ -46,6 +60,14 @@ export function getMovieYear(movie) {
   // Use bracket notation as an alternative approach to property access.
   // While dot notation is common for fixed property names, bracket notation is useful when property names are dynamic.
   // implement code here
+
+  if (Object.hasOwn(movie, 'year') && typeof movie.year !== 'undefined') {
+    return movie["year"];
+  }
+  else {
+    console.log("getMovieYear: Invalid movie object or year missing.");
+    return 0;
+  }
 }
 
 /**
@@ -56,7 +78,22 @@ export function getMovieYear(movie) {
  */
 export function isMovieClassic(movie) {
   // implement code here
+
+  if (Object.hasOwn(movie, 'year') && typeof movie.year == 'number') {
+    if (movie.year <= 2000) {
+      return true;
+    }
+
+    else {
+      return false;
+    }
+
+  } else {
+    console.log("isMovieClassic: Movie object invalid or missing year.");
+    return false;
+  }
 }
+
 
 /**
  * Returns an array of all property names of the movie object.
@@ -66,6 +103,15 @@ export function isMovieClassic(movie) {
  */
 export function getMovieKeys(movie) {
   // implement code here
+  if (movie !== null && typeof movie !== 'undefined') {
+    return Object.keys(movie);
+  }
+
+  else {
+    console.log("getMovieKeys: Provided input is not a valid object.");
+    return [];
+  }
+
 }
 
 /**
@@ -76,6 +122,14 @@ export function getMovieKeys(movie) {
  */
 export function getMoviePropertiesCount(movie) {
   // implement code here
+  if (movie !== null && typeof movie !== 'undefined' && typeof movie === 'object') {
+    return Object.keys(movie).length;
+  }
+
+  else {
+    console.log("getMoviePropertiesCount: Provided input is not a valid object.");
+    return 0;
+  }
 }
 
 // --------------------

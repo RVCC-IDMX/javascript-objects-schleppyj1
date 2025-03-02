@@ -23,6 +23,13 @@ export function setMovieRating(movie, rating) {
 
   // implement code here
   // Use dot notation to update the rating.
+  console.error("Rating = " + rating);
+  if (movie !== null) {
+    if (typeof rating == 'number') {
+      movie.rating = rating;
+    }
+  }
+  return movie;
 
 }
 
@@ -37,6 +44,14 @@ export function addMovieGenre(movie, genre) {
 
   // implement code here
   // Validate the new genre against the allowedGenres array.
+  if (movie !== null) {
+    if (allowedGenres.includes(genre)) {
+      movie.genre = genre;
+    }
+  }
+
+  return movie;
+
 
 }
 
@@ -51,6 +66,14 @@ export function removeDirectorProperty(movie) {
   // implement code here
   // Use the delete operator to remove the property.
 
+
+  if (movie !== null && typeof movie !== 'undefined') {
+    if (movie.director !== null && typeof movie.director !== 'undefined') {
+      delete movie.director;
+    }
+    return movie;
+  }
+  return null;
 }
 
 /**
@@ -62,6 +85,16 @@ export function removeDirectorProperty(movie) {
  */
 export function addCastMember(movie, newMember) {
   // implement code here
+
+  if (movie !== null && typeof movie !== 'undefined') {
+    if (movie.cast !== null && Array.isArray(movie.cast) && typeof movie.cast !== 'undefined') {
+      if (newMember !== null && typeof newMember == 'string') {
+        movie.cast.push(newMember);
+      }
+
+    }
+  }
+  return movie;
 }
 
 /**
@@ -72,6 +105,10 @@ export function addCastMember(movie, newMember) {
 export function getAllowedGenres() {
   // implement code here
   // Return a copy so external code can't modify the private array.
+
+  let arrayCopy = [...allowedGenres];
+
+  return arrayCopy;
 }
 
 // --------------------
